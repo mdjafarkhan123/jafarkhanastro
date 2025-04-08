@@ -38,7 +38,7 @@ body {
     padding: 0;
     min-height: 100vh;
     min-width: 320px;
-    font-family: "Poppins", "Helvetica", system-ui, sans-serif;
+    font-family: "Poppins", system-ui, sans-serif;
     font-display: optional;
     font-size: var(--fs-sm);
     font-weight: 400;
@@ -70,7 +70,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Saira Extra Condensed", "Helvetica", system-ui, sans-seri;
+    font-family: "Saira Extra Condensed", system-ui, sans-seri;
     font-display: optional;
     font-weight: 900;
     line-height: 1;
