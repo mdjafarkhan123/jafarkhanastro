@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Project from "../components/Project.astro";
+import projects from "../data/project";
+---
+
+<Layout>
+    <section class="works">
+        <div class="works__container container">
+            <div class="works__data">
+                <h1 class="works__title">PROJECTS</h1>
+                <p class="works__subtitle subtitle">
+                    Checkout some of my latest works - Each project is built
+                    with care and creativity
+                </p>
+            </div>
+            <div class="works__showcase">
+                {
+                    projects.map((project) => (
+                        <Project
+                            title={project.title}
+                            category={project.tag}
+                            image={project.image}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+        <div class="works__helper-section"></div>
+    </section>
+</Layout>
+
+<style lang="scss">
+    @use "../styles/utils" as responsive;
+    .works {
+        --round: clamp(3.75rem, -0.116rem + 16.279vw, 12.5rem);
+        background-color: var(--color-bg-dark);
+        padding: var(--space-md) 0 var(--space-2xl) 0;
+        border-radius: 0 0 var(--round) var(--round);
+        z-index: 2;
+        overflow: hidden;
+        pointer-events: all;
+        &__container {
+            background-color: var(--color-bg-dark);
+            flex-flow: column;
+            gap: var(--space-xl);
+        }
+        &__data {
+            display: flex;
+            flex-flow: column;
+            gap: var(--space-sm);
+            text-align: center;
+        }
+
+        &__showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2em;
+        }
+    }
+
+    @include responsive.respond-to("laptop") {
+        .works {
+            &__showcase {
+                grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            }
+        }
+    }
+</style>
