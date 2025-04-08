@@ -14,7 +14,12 @@ const works2 = projects.slice(2, 4);
         <section class="hero">
             <div class="hero__container container">
                 <div class="hero__image">
-                    <img src={jafarkhanL.src} alt="Jafar Khan" />
+                    <img
+                        src={jafarkhanL.src}
+                        alt="Jafar Khan"
+                        width="620"
+                        height="559"
+                    />
                 </div>
                 <div class="hero__data">
                     <h1 class="hero__title">Jafar Khan</h1>
@@ -161,7 +166,10 @@ const works2 = projects.slice(2, 4);
         }
         &__image {
             img {
-                width: 100%;
+                max-width: 100%;
+                height: auto;
+                display: block;
+                aspect-ratio: 1 / 1;
                 object-fit: cover;
                 user-select: none;
                 pointer-events: none;
