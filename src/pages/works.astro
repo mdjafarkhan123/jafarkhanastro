@@ -2,41 +2,65 @@
 import Layout from "../layouts/Layout.astro";
 import Project from "../components/Project.astro";
 import projects from "../data/project";
+import Spinner from "../components/Spinner.vue";
 ---
 
 <Layout>
-    <section class="works">
-        <div class="works__container container">
-            <div class="works__data">
-                <h1 class="works__title">PROJECTS</h1>
-                <p class="works__subtitle subtitle">
-                    Checkout some of my latest works - Each project is built
-                    with care and creativity
-                </p>
+    <main>
+        <section class="works">
+            <div class="works__container container">
+                <div class="works__data">
+                    <h1 class="works__title">PROJECTS</h1>
+                    <p class="works__subtitle subtitle">
+                        Checkout some of my latest works - Each project is built
+                        with care and creativity
+                    </p>
+                </div>
+                <div class="works__showcase">
+                    {
+                        projects.map((project) => (
+                            <Project
+                                title={project.title}
+                                category={project.tag}
+                                image={project.image}
+                            />
+                        ))
+                    }
+                </div>
             </div>
-            <div class="works__showcase">
-                {
-                    projects.map((project) => (
-                        <Project
-                            title={project.title}
-                            category={project.tag}
-                            image={project.image}
-                        />
-                    ))
-                }
+            <div class="works__helper-section"></div>
+        </section>
+
+        <section class="cta">
+            <div class="container cta__container">
+                <div class="cta__content">
+                    <h2 class="cta__title cta__title--small">Let's</h2>
+                    <div class="cta__title-wrapper">
+                        <h2 class="cta__title cta__title--big">BUILD</h2>
+                        <a href="./contact">
+                            <Spinner client:load />
+                        </a>
+                        <h2 class="cta__title cta__title--big">GREAT</h2>
+                    </div>
+                    <h2 class="cta__title cta__title--small">
+                        Things Together
+                    </h2>
+                </div>
             </div>
-        </div>
-        <div class="works__helper-section"></div>
-    </section>
+        </section>
+    </main>
 </Layout>
 
 <style lang="scss">
     @use "../styles/utils" as responsive;
+    main {
+        position: relative;
+        z-index: 2;
+        pointer-events: none;
+    }
     .works {
-        --round: clamp(3.75rem, -0.116rem + 16.279vw, 12.5rem);
         background-color: var(--color-bg-dark);
         padding: var(--space-md) 0 var(--space-2xl) 0;
-        border-radius: 0 0 var(--round) var(--round);
         z-index: 2;
         overflow: hidden;
         pointer-events: all;
@@ -59,10 +83,58 @@ import projects from "../data/project";
         }
     }
 
+    .cta {
+        --round: clamp(3.75rem, -0.116rem + 16.279vw, 12.5rem);
+        background-color: var(--color-bg-dark);
+        border-radius: 0 0 var(--round) var(--round);
+        overflow: hidden;
+        pointer-events: all;
+        &__container {
+            max-width: 1280px;
+            background-color: var(--color-bg-dark);
+        }
+        &__content {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            width: 100%;
+            padding-bottom: var(--space-2xl);
+        }
+        &__title {
+            text-align: center;
+            &-wrapper {
+                width: 100%;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                .cta__image {
+                    width: clamp(10.625rem, 8.802rem + 7.674vw, 14.75rem);
+                    margin: var(--space-sm);
+                }
+            }
+            &--small {
+                font-size: var(--fs-xl);
+            }
+
+            &--big {
+                font-size: var(--fs-2xl);
+            }
+        }
+    }
+
     @include responsive.respond-to("laptop") {
         .works {
             &__showcase {
                 grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            }
+        }
+
+        .cta {
+            &__title-wrapper {
+                flex-flow: row;
+                justify-content: space-between;
             }
         }
     }

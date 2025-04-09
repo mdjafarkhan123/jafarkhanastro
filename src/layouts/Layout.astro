@@ -13,10 +13,8 @@ import Header from "../components/Header.astro";
         <title>Jafar Khan</title>
     </head>
     <body>
-        <Header />
-        <main>
-            <slot />
-        </main>
+        <Header client:load />
+        <slot />
         <Footer />
     </body>
 </html>
@@ -25,10 +23,45 @@ import Header from "../components/Header.astro";
     @use "../styles/globals";
     @use "../styles/utils" as responsive;
     main {
-        position: relative;
-        z-index: 2;
         margin-bottom: 15em;
-        pointer-events: none;
+    }
+    .intro {
+        position: fixed;
+        z-index: 9999;
+        background-color: var(--color-bg-dark);
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        overflow: hidden;
+        transition: 1s;
+
+        &__text {
+            position: absolute;
+            width: fit-content;
+            left: 50%;
+            top: 50%;
+            font-size: 4rem;
+            text-transform: uppercase;
+            transform: translate(-50%, -50%);
+            span {
+                position: relative;
+                display: inline-block;
+                bottom: -20px;
+                opacity: 0;
+            }
+
+            span.active {
+                opacity: 1;
+                bottom: 0;
+                transition: ease-in-out 0.5s;
+            }
+
+            span.fadeOut {
+                opacity: 0;
+                bottom: 150px;
+                transition: ease-in-out 0.5s;
+            }
+        }
     }
 
     @include responsive.respond-to("laptop") {
@@ -36,5 +69,4 @@ import Header from "../components/Header.astro";
             margin-bottom: 10em;
         }
     }
-
 </style>

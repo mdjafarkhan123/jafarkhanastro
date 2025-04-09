@@ -19,30 +19,107 @@
             <div class="header__action">
                 <a href="/contact" class="btn"> Get in touch </a>
             </div>
-            <div class="header__menu">
+            <div class="header__toggler">
+                <span></span>
+                <span></span>
+            </div>
+            <div class="header__menu header__menu-wrapper">
                 <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
+                    class="transition"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
                 >
-                    <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"
+                    <path
+                        class="path"
+                        fill="var(--color-bg-white)"
+                        dur="10s"
+                        vector-effect="non-scaling-stroke"
+                        d="M 0 100 L 100 100 100 100 0 100 C 0 0, 0 0, 0 100"
                     ></path>
                 </svg>
+                <ul class="header__menu-items">
+                    <li class="header__menu-item">
+                        <a href="/" class="header__menu-item-link">Home</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="/#about" class="header__menu-item-link"
+                            >About</a
+                        >
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="/works" class="header__menu-item-link">Works</a
+                        >
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="/contact" class="header__menu-item-link"
+                            >Contact</a
+                        >
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </header>
+<script>
+    let path = document.querySelector(".path");
+
+    function lerp(start, end, t) {
+        return (start * (1 - t) + end * t).toFixed(3);
+    }
+
+    let toggle = false;
+    let y = 100;
+    let c = 100;
+    let animationFrame;
+    let menuToggle = document.querySelector(".header__toggler");
+    let ul = document.querySelector(".header__menu-items");
+
+    menuToggle.addEventListener("click", () => {
+        toggle = !toggle;
+        cancelAnimationFrame(animationFrame);
+        animate();
+
+        if (toggle) {
+            ul.style.display = "block";
+        } else {
+            setTimeout(() => {
+                ul.style.display = "none";
+            }, 0);
+        }
+    });
+
+    function animate() {
+        if (toggle) {
+            y = lerp(y, 0, 0.099);
+            c = lerp(c, 0, 0.125);
+        } else {
+            y = lerp(y, 100, 0.099);
+            c = lerp(c, 100, 0.125); // Changed from 0.15 to match opening speed
+        }
+        path.setAttribute(
+            "d",
+            `M 0 ${y} L 0 100 100 100 100 ${y} C ${50} ${c}, ${50} ${c}, 0 ${y}`
+        );
+        if ((toggle && y < 1 && c < 1) || (!toggle && y > 99 && c > 99)) {
+            cancelAnimationFrame(animationFrame);
+            return;
+        }
+
+        animationFrame = requestAnimationFrame(animate);
+    }
+</script>
 
 <style lang="scss">
     .header {
         position: relative;
-        z-index: 999;
+        z-index: 3;
         background-color: var(--color-bg-dark);
         &__container {
             max-width: 1920px;
             display: flex;
             padding-block: 0.5em;
             padding-inline: 1em;
+            z-index: inherit;
         }
 
         &__nav {
@@ -51,10 +128,12 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
+            z-index: inherit;
         }
         &__logo {
             cursor: pointer;
             flex-grow: 1;
+            z-index: inherit;
         }
 
         &__action {
@@ -65,20 +144,54 @@
                     clamp(1.25rem, 0.952rem + 1.19vw, 1.875rem);
             }
         }
-        &__menu {
-            background-color: var(--color-primary);
-            min-width: 50px;
-            min-height: 50px;
+
+        &__toggler {
+            --size: 65px;
             display: flex;
+            width: var(--size);
+            height: var(--size);
+            flex-flow: column;
             justify-content: center;
             align-items: center;
             padding: 10px;
+            background-color: var(--color-primary);
             border-radius: 100px;
+            gap: 5px;
             cursor: pointer;
-            svg {
-                fill: white;
-                width: 25px;
-                height: auto;
+            z-index: inherit;
+            span {
+                display: block;
+                width: 30px;
+                height: 2px;
+                background-color: var(--color-bg-dark);
+            }
+        }
+        &__menu {
+            position: fixed;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            left: 0;
+            top: 0;
+            z-index: 1;
+
+            .transition {
+                position: absolute;
+                left: 0;
+                top: -20px;
+                width: 100%;
+                min-height: calc(100vh + 40px);
+                z-index: inherit;
+            }
+
+            &-items {
+                display: none;
+                z-index: 2;
+                .active {
+                    display: block;
+                }
             }
         }
     }

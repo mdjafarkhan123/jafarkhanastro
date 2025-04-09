@@ -10,142 +10,191 @@ const works2 = projects.slice(2, 4);
 ---
 
 <Layout>
-    <div class="page-wrapper">
-        <section class="hero">
-            <div class="hero__container container">
-                <div class="hero__image">
-                    <img
-                        src={jafarkhanL.src}
-                        alt="Jafar Khan"
-                        width="620"
-                        height="559"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="hero__data">
-                    <h1 class="hero__title">Jafar Khan</h1>
-                    <p class="hero__subtitle subtitle">
-                        I am a freelance front-end developer from Dhaka,
-                        Bangladesh
-                    </p>
-                </div>
-            </div>
-        </section>
-        <section id="#about" class="about">
-            <div class="about__background">
-                <div class="about__container container">
-                    <div class="about__jafar">
-                        <div class="about__jafar__title">
-                            <h2>About</h2>
-                        </div>
-                        <div class="about__jafar__content">
-                            <div class="summary">
-                                I am Jafar Khan, a freelance web designer and
-                                developer with over 5 years of experience.
-                            </div>
-                            <p class="description">
-                                Since 2020, I've brought more than 200 projects
-                                to life, creating modern, interactive, and
-                                high-performance websites for clients across the
-                                globe. My priority is client satisfaction,
-                                delivering high-quality, tailored solutions that
-                                align with their vision. My 5-star average
-                                rating across marketplaces reflects to my
-                                dedication to quality, client satisfaction, and
-                                delivering exceptional results. Whether you are
-                                starting from scratch or elevating an existing
-                                site, I'm here to craft a web experience that's
-                                as unique as your vision.
-                            </p>
-                            <a href="#work" class="btn">View my work</a>
-                        </div>
+    <!-- <div class="intro">
+        <h1 class="intro__text">
+            <span>Jafar</span>
+            <span>Khan</span>
+        </h1>
+    </div> -->
+    <main>
+        <div class="page-wrapper">
+            <section class="hero">
+                <div class="hero__container container">
+                    <div class="hero__image">
+                        <img
+                            src={jafarkhanL.src}
+                            alt="Jafar Khan"
+                            width="620"
+                            height="559"
+                            loading="lazy"
+                        />
                     </div>
-                    <div class="about__skills">
-                        <div class="about__skills__title">
-                            <h2>Skills</h2>
-                        </div>
-                        <div class="about__skills__content">
-                            <ul class="skill__block">
-                                <li class="skill__item">HTML</li>
-                                <li class="skill__item">CSS</li>
-                                <li class="skill__item">SCSS</li>
-                                <li class="skill__item">JavaScript</li>
-                                <li class="skill__item">React JS</li>
-                                <li class="skill__item">Vue Js</li>
-                            </ul>
-                            <ul class="skill__block">
-                                <li class="skill__item">Astro JS</li>
-                                <li class="skill__item">GSAP</li>
-                                <li class="skill__item">WordPress CMS</li>
-                                <li class="skill__item">Git</li>
-                                <li class="skill__item">Figma</li>
-                                <li class="skill__item">PHP</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="work" class="work">
-            <div class="work__container container">
-                <div class="work__content work__content-col1">
-                    <div class="work__data">
-                        <h2 class="work__title title">PROJECTS</h2>
-                        <p class="work__subtitle subtitle">
-                            Take a look at my works
+                    <div class="hero__data">
+                        <h1 class="hero__title">Jafar Khan</h1>
+                        <p class="hero__subtitle subtitle">
+                            I am a freelance front-end developer from Dhaka,
+                            Bangladesh
                         </p>
                     </div>
-                    {
-                        works1.map((project, index) => (
-                            <Project
-                                title={project.title}
-                                category={project.tag}
-                                image={project.image}
-                            />
-                        ))
-                    }
                 </div>
-                <div class="work__content work__content-col2">
-                    {
-                        works2.map((project, index) => (
-                            <Project
-                                title={project.title}
-                                category={project.tag}
-                                image={project.image}
-                            />
-                        ))
-                    }
-                    <div class="work__content__cta">
-                        <p class="cta__title">Like what you see?</p>
-                        <a href="./works" class="btn">Discover more</a>
+            </section>
+            <section id="#about" class="about">
+                <div class="about__background">
+                    <div class="about__container container">
+                        <div class="about__jafar">
+                            <div class="about__jafar__title">
+                                <h2>About</h2>
+                            </div>
+                            <div class="about__jafar__content">
+                                <div class="summary">
+                                    I am Jafar Khan, a freelance web designer
+                                    and developer with over 5 years of
+                                    experience.
+                                </div>
+                                <p class="description">
+                                    Since 2020, I've brought more than 200
+                                    projects to life, creating modern,
+                                    interactive, and high-performance websites
+                                    for clients across the globe. My priority is
+                                    client satisfaction, delivering
+                                    high-quality, tailored solutions that align
+                                    with their vision. My 5-star average rating
+                                    across marketplaces reflects to my
+                                    dedication to quality, client satisfaction,
+                                    and delivering exceptional results. Whether
+                                    you are starting from scratch or elevating
+                                    an existing site, I'm here to craft a web
+                                    experience that's as unique as your vision.
+                                </p>
+                                <a href="#work" class="btn">View my work</a>
+                            </div>
+                        </div>
+                        <div class="about__skills">
+                            <div class="about__skills__title">
+                                <h2>Skills</h2>
+                            </div>
+                            <div class="about__skills__content">
+                                <ul class="skill__block">
+                                    <li class="skill__item">HTML</li>
+                                    <li class="skill__item">CSS</li>
+                                    <li class="skill__item">SCSS</li>
+                                    <li class="skill__item">JavaScript</li>
+                                    <li class="skill__item">React JS</li>
+                                    <li class="skill__item">Vue Js</li>
+                                </ul>
+                                <ul class="skill__block">
+                                    <li class="skill__item">Astro JS</li>
+                                    <li class="skill__item">GSAP</li>
+                                    <li class="skill__item">WordPress CMS</li>
+                                    <li class="skill__item">Git</li>
+                                    <li class="skill__item">Figma</li>
+                                    <li class="skill__item">PHP</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="cta">
-            <div class="container cta__container">
-                <div class="cta__content">
-                    <h2 class="cta__title cta__title--small">Let's</h2>
-                    <div class="cta__title-wrapper">
-                        <h2 class="cta__title cta__title--big">BUILD</h2>
-                        <a href="./contact">
-                            <Spinner client:load />
-                        </a>
-                        <h2 class="cta__title cta__title--big">GREAT</h2>
+            <section id="work" class="work">
+                <div class="work__container container">
+                    <div class="work__content work__content-col1">
+                        <div class="work__data">
+                            <h2 class="work__title title">PROJECTS</h2>
+                            <p class="work__subtitle subtitle">
+                                Take a look at my works
+                            </p>
+                        </div>
+                        {
+                            works1.map((project, index) => (
+                                <Project
+                                    title={project.title}
+                                    category={project.tag}
+                                    image={project.image}
+                                />
+                            ))
+                        }
                     </div>
-                    <h2 class="cta__title cta__title--small">
-                        Things Together
-                    </h2>
+                    <div class="work__content work__content-col2">
+                        {
+                            works2.map((project, index) => (
+                                <Project
+                                    title={project.title}
+                                    category={project.tag}
+                                    image={project.image}
+                                />
+                            ))
+                        }
+                        <div class="work__content__cta">
+                            <p class="cta__title">Like what you see?</p>
+                            <a href="./works" class="btn">Discover more</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </div>
+            </section>
+
+            <section class="cta">
+                <div class="container cta__container">
+                    <div class="cta__content">
+                        <h2 class="cta__title cta__title--small">Let's</h2>
+                        <div class="cta__title-wrapper">
+                            <h2 class="cta__title cta__title--big">BUILD</h2>
+                            <a href="./contact">
+                                <Spinner client:load />
+                            </a>
+                            <h2 class="cta__title cta__title--big">GREAT</h2>
+                        </div>
+                        <h2 class="cta__title cta__title--small">
+                            Things Together
+                        </h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- <script defer>
+        let intro = document.querySelector(".intro");
+        let introText = document.querySelector(".intro .intro__text");
+        let introSpan = document.querySelectorAll(".intro__text span");
+        window.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                introSpan.forEach((span, index) => {
+                    setTimeout(
+                        () => {
+                            span.classList.add("active");
+                        },
+                        (index + 1) * 600
+                    );
+                });
+
+                setTimeout(() => {
+                    introSpan.forEach((span, index) => {
+                        setTimeout(
+                            () => {
+                                span.classList.remove("active");
+                                span.classList.add("fadeOut");
+                            },
+                            (index + 1) * 400
+                        );
+                    });
+                }, 2000);
+            }, 0);
+
+            setTimeout(() => {
+                intro.style.top = "-100vh";
+            }, 3700);
+        });
+    </script> -->
 </Layout>
 
 <style lang="scss">
     @use "../styles/utils" as responsive;
+    main {
+        position: relative;
+        z-index: 2;
+        pointer-events: none;
+    }
+
     .page-wrapper {
         --round: clamp(3.75rem, -0.116rem + 16.279vw, 12.5rem);
         position: relative;
