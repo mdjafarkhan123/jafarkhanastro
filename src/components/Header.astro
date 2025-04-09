@@ -60,7 +60,7 @@
         </div>
     </div>
 </header>
-<script>
+<script defer>
     let path = document.querySelector(".path");
 
     function lerp(start, end, t) {
@@ -176,6 +176,7 @@
             left: 0;
             top: 0;
             z-index: 1;
+            pointer-events: none;
 
             .transition {
                 position: absolute;
@@ -189,9 +190,15 @@
             &-items {
                 display: none;
                 z-index: 2;
+                pointer-events: all;
                 .active {
                     display: block;
                 }
+            }
+
+            &-item {
+                font-size: var(--fs-xl);
+                font-weight: 700;
             }
         }
     }
