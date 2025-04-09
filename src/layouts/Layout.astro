@@ -16,6 +16,7 @@ import Header from "../components/Header.astro";
         <Header />
         <slot />
         <Footer />
+        <script src="../code/hamburgermenu.js"></script>
     </body>
 </html>
 
@@ -63,7 +64,11 @@ import Header from "../components/Header.astro";
             }
         }
     }
-
+    .active-fadein {
+        display: block !important;
+        opacity: 1 !important;
+        transition: 0.5s ease all !important;
+    }
     @include responsive.respond-to("laptop") {
         main {
             margin-bottom: 10em;
