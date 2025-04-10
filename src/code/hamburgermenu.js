@@ -1,3 +1,4 @@
+const largeScreen = window.matchMedia("(min-width: 1024px)");
 window.addEventListener("DOMContentLoaded", () => {
     let path = document.querySelector(".header__menu .path");
 
@@ -33,8 +34,13 @@ window.addEventListener("DOMContentLoaded", () => {
             y = lerp(y, 0, 0.099);
             c = lerp(c, 0, 0.125);
         } else {
-            y = lerp(y, 100, 0.045);
-            c = lerp(c, 100, 0.065);
+            if (largeScreen.matches) {
+                y = lerp(y, 100, 0.033);
+                c = lerp(c, 100, 0.041);
+            } else {
+                y = lerp(y, 100, 0.099);
+                c = lerp(c, 100, 0.125);
+            }
         }
         path.setAttribute(
             "d",
