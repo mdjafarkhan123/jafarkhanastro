@@ -85,7 +85,7 @@
             width: 100%;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
             z-index: inherit;
         }
         &__logo {
@@ -104,7 +104,7 @@
         }
 
         &__toggler {
-            --size: 65px;
+            --size: clamp(3.125rem, 2.645rem + 1.829vw, 4.063rem);
             position: relative;
             display: flex;
             width: var(--size);
@@ -133,7 +133,7 @@
             }
             svg {
                 pointer-events: none;
-                height: 2.4rem;
+                height: clamp(2rem, 0.488vw + 1.795rem, 2.4rem);
                 transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
                 .line {
                     fill: none;
