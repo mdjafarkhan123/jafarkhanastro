@@ -7,20 +7,47 @@
         <div class="footer__contact">
             <a
                 href="mailto:profile.mdjafarkhan@gmail.com"
-                class="footer__contact-link"
+                class="btn footer__contact-link magnetic-button"
+                data-strength="1.5"
+                data-strength-text=".4"
             >
-                profile.mdjafarkhan@gmail.com
+                <span class="text"> profile.mdjafarkhan@gmail.com </span>
+                <span class="btn__bg"></span>
             </a>
         </div>
-        <ul class="footer__socials">
+        <ul id="footer-socials" class="footer__socials">
             <li class="footer__socials-item">
-                <a href="" class="footer__socials-item-link"> Linkdin </a>
+                <a
+                    href=""
+                    class="footer__socials-item-link btn magnetic-button"
+                    data-strength="1.5"
+                    data-strength-text=".4"
+                >
+                    <span class="text">Linkedin</span>
+                    <span class="btn__bg"></span>
+                </a>
             </li>
             <li class="footer__socials-item">
-                <a href="" class="footer__socials-item-link"> Behnace </a>
+                <a
+                    href=""
+                    class="footer__socials-item-link btn magnetic-button"
+                    data-strength="1.5"
+                    data-strength-text=".4"
+                >
+                    <span class="text">Behance</span>
+                    <span class="btn__bg"></span>
+                </a>
             </li>
             <li class="footer__socials-item">
-                <a href="" class="footer__socials-item-link"> Fiverr </a>
+                <a
+                    href=""
+                    class="footer__socials-item-link btn magnetic-button"
+                    data-strength="1.5"
+                    data-strength-text=".4"
+                >
+                    <span class="text">Fiverr</span>
+                    <span class="btn__bg"></span>
+                </a>
             </li>
         </ul>
     </div>
@@ -44,6 +71,17 @@
         padding-bottom: var(--space-md);
         &__container {
             max-width: 1920px;
+        }
+        .btn {
+            padding: unset;
+            border: unset;
+            &:hover .text {
+                color: var(--color-text-white);
+                transition: color 0.3s ease-in-out;
+            }
+            &__bg {
+                background: var(--color-bg-dark);
+            }
         }
         @mixin round-style {
             border: 1px solid var(--color-bg-dark);
@@ -69,19 +107,23 @@
         }
 
         &__contact {
-            font-size: clamp(1rem, 0.89rem + 0.465vw, 1.25rem);
-            @include round-style();
+            .btn {
+                font-size: clamp(1rem, 0.89rem + 0.465vw, 1.25rem);
+                @include round-style();
+            }
         }
 
-        &__socials {
+        #footer-socials {
             font-size: clamp(1rem, 0.89rem + 0.465vw, 1.25rem);
             display: flex;
             justify-content: space-between;
             gap: 0.5em;
             width: 100%;
             max-width: max(60%, 400px);
-            &-item {
-                @include round-style();
+            .footer__socials-item {
+                &-link {
+                    @include round-style();
+                }
             }
         }
     }
@@ -95,7 +137,7 @@
                 gap: 1em;
             }
 
-            &__socials {
+            #footer-socials {
                 max-width: fit-content;
                 justify-content: center;
                 order: 3;

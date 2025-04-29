@@ -37,6 +37,8 @@
         format("woff2");
 }
 :root {
+    --x: 0;
+    --y: 0;
     --color-primary: #17f700;
     --color-heading-white: #ffffff;
     --color-heading-dark: #0c0c0c;
@@ -70,4 +72,6 @@
     --space-lg: clamp(2.25rem, 1.587rem + 2.791vw, 3.75rem); /* 36px - 60px */
     --space-xl: clamp(2.25rem, 0.464rem + 7.143vw, 6rem); /* 48px - 80px */
     --space-2xl: clamp(4.5rem, 3.1744rem + 5.5814vw, 7.5rem); /* 72px - 120px */
+
+    --round: clamp(3.75rem, -0.116rem + 16.279vw, 12.5rem);
 }

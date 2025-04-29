@@ -17,7 +17,15 @@
                 </a>
             </div>
             <div class="header__action">
-                <a href="/contact" class="btn"> Get in touch </a>
+                <a
+                    href="./contact"
+                    class="btn magnetic-button"
+                    data-strength="1.5"
+                    data-strength-text=".7"
+                >
+                    <span class="text">Get in touch</span>
+                    <span class="btn__bg"></span>
+                </a>
             </div>
             <div class="header__toggler">
                 <input type="checkbox" />
@@ -71,7 +79,8 @@
     .header {
         position: relative;
         z-index: 3;
-        background-color: var(--color-bg-dark);
+        min-height: 80px;
+        margin-bottom: -100px;
         &__container {
             max-width: 1920px;
             display: flex;

@@ -24,6 +24,7 @@ const works2 = projects.slice(2, 4);
     </div>
     <main>
         <div class="page-wrapper">
+            <span id="cursorFollower" class="cursorFollower"></span>
             <section class="hero">
                 <div class="hero__container container">
                     <div class="hero__image">
@@ -115,7 +116,18 @@ const works2 = projects.slice(2, 4);
                         }
                         <div class="work__content__cta">
                             <p class="cta__title">Like what you see?</p>
-                            <a href="./works" class="btn">Discover more</a>
+                            <div class="btn__wrapper"></div>
+                            <div class="buttonwrapper">
+                                <a
+                                    href="./works"
+                                    class="btn magnetic-button"
+                                    data-strength="1.5"
+                                    data-strength-text=".7"
+                                >
+                                    <span class="text">Discover more</span>
+                                    <span class="btn__bg"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -150,7 +162,15 @@ const works2 = projects.slice(2, 4);
                                     an existing site, I'm here to craft a web
                                     experience that's as unique as your vision.
                                 </p>
-                                <a href="#work" class="btn">View my work</a>
+                                <a
+                                    href="./works"
+                                    class="btn magnetic-button"
+                                    data-strength="1.5"
+                                    data-strength-text=".7"
+                                >
+                                    <span class="text">Discover more</span>
+                                    <span class="btn__bg"></span>
+                                </a>
                             </div>
                         </div>
                         <div class="about__skills">
@@ -200,7 +220,7 @@ const works2 = projects.slice(2, 4);
     </main>
 
     <script src="../code/preloader.js"></script>
-    <script src="../code/logoslider.js"></script>
+    <script src="../code/customcode.js"></script>
 </Layout>
 
 <style lang="scss">
@@ -261,13 +281,12 @@ const works2 = projects.slice(2, 4);
         pointer-events: all;
     }
     .hero {
-        background-color: var(--color-bg-dark);
         &__container {
             flex-flow: column;
             align-items: center;
             align-content: center;
             justify-content: center;
-            padding-top: var(--space-xl);
+            padding-top: calc(var(--space-xl) + 100px);
             padding-bottom: var(--space-xl);
         }
         &__image {
@@ -337,7 +356,6 @@ const works2 = projects.slice(2, 4);
     }
 
     .about {
-        background-color: var(--color-bg-dark);
         padding-inline: var(--space-sm);
 
         .word {
@@ -377,6 +395,7 @@ const works2 = projects.slice(2, 4);
                 color: var(--color-text-dark);
                 .summary {
                     font-size: var(--fs-md);
+                    font-weight: 500;
                     margin-bottom: 20px;
                 }
                 .btn {
@@ -403,7 +422,6 @@ const works2 = projects.slice(2, 4);
     }
 
     .work {
-        background-color: var(--color-bg-dark);
         &__container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -432,7 +450,6 @@ const works2 = projects.slice(2, 4);
         padding-top: var(--space-2xl);
         &__container {
             max-width: 1280px;
-            background-color: var(--color-bg-dark);
         }
         &__content {
             display: flex;
@@ -468,7 +485,7 @@ const works2 = projects.slice(2, 4);
     @include responsive.respond-to("mobile") {
         .hero {
             &__container {
-                padding-top: 0;
+                padding-top: 100px;
             }
             &__image {
                 max-width: 620px;

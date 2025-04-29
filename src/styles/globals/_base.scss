@@ -1,3 +1,4 @@
+@use "../utils" as responsive;
 html {
     font-size: 100%;
     box-sizing: border-box;
@@ -129,6 +130,16 @@ textarea {
     scroll-margin-top: 2rem;
 }
 
+//========== Common element styling ==========//
+
+.page-wrapper {
+    position: relative;
+    background-color: var(--color-bg-dark);
+    border-radius: 0 0 var(--round) var(--round);
+    z-index: 2;
+    overflow: hidden;
+    pointer-events: all;
+}
 .container {
     display: flex;
     max-width: 1240px;
@@ -142,7 +153,12 @@ textarea {
 }
 
 .btn {
-    display: inline-block;
+    position: relative;
+    display: flex;
+    max-width: fit-content;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
     font-size: clamp(1rem, 0.89rem + 0.465vw, 1.25rem);
     font-weight: 500;
     padding: clamp(0.75rem, 0.452rem + 1.19vw, 1.375rem)
@@ -150,7 +166,34 @@ textarea {
     background-color: transparent;
     border: 2px solid var(--color-primary);
     border-radius: 100px;
+    overflow: hidden;
     cursor: pointer;
+    &:hover .text {
+        color: var(--color-text-dark);
+        transition: color 0.5s ease;
+    }
+    .text {
+        z-index: 3;
+        display: inline-block;
+    }
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 225%;
+        min-height: 225%;
+        aspect-ratio: 1;
+        background: var(--color-primary);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.5s ease-out;
+        z-index: 1;
+    }
+
+    &:hover &__bg {
+        transform: translate(-50%, -50%) scale(1);
+    }
     &--fill {
         color: var(--color-bg-white);
         background-color: var(--color-primary);
@@ -162,4 +205,28 @@ textarea {
     font-weight: 500;
     text-transform: capitalize;
     color: var(--color-offwhite);
+}
+
+.cursorFollower {
+    display: none;
+    position: absolute;
+    max-width: 1400px;
+    max-height: 1400px;
+    width: 100%;
+    height: 100%;
+    border-radius: 100vmax;
+    pointer-events: none;
+    background: radial-gradient(
+        1100px circle at center,
+        rgba(0, 255, 42, 0.404),
+        transparent 60%
+    );
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+@include responsive.respond-to("laptop") {
+    .cursorFollower {
+        display: block;
+    }
 }
