@@ -7,52 +7,81 @@ import Spinner from "../components/Spinner.vue";
 
 <Layout>
     <main>
-        <section class="works">
-            <div class="works__container container">
-                <div class="works__data">
-                    <h1 class="works__title">PROJECTS</h1>
-                    <p class="works__subtitle subtitle">
-                        Checkout some of my latest works - Each project is built
-                        with care and creativity
-                    </p>
-                </div>
-                <div class="works__showcase">
-                    {
-                        projects.map((project) => (
-                            <Project
-                                title={project.title}
-                                category={project.tag}
-                                image={project.image}
-                            />
-                        ))
-                    }
-                </div>
-            </div>
-            <div class="works__helper-section"></div>
-        </section>
-
-        <section class="cta">
-            <div class="container cta__container">
-                <div class="cta__content">
-                    <h2 class="cta__title cta__title--small">Let's</h2>
-                    <div class="cta__title-wrapper">
-                        <h2 class="cta__title cta__title--big">BUILD</h2>
-                        <a href="./contact">
-                            <Spinner client:load />
-                        </a>
-                        <h2 class="cta__title cta__title--big">GREAT</h2>
+        <div class="page-wrapper">
+            <span id="cursorFollower" class="cursorFollower"></span>
+            <section class="works">
+                <div class="works__container container">
+                    <div class="works__data">
+                        <h1 class="works__title">PROJECTS</h1>
+                        <p class="works__subtitle subtitle">
+                            Checkout some of my latest works - Each project is
+                            built with care and creativity
+                        </p>
                     </div>
-                    <h2 class="cta__title cta__title--small">
-                        Things Together
-                    </h2>
+                    <div class="works__showcase">
+                        {
+                            projects.map((project) => (
+                                <Project
+                                    title={project.title}
+                                    category={project.tag}
+                                    image={project.image}
+                                />
+                            ))
+                        }
+                    </div>
                 </div>
-            </div>
-        </section>
+                <div class="works__helper-section"></div>
+            </section>
+
+            <section class="cta">
+                <div class="container cta__container">
+                    <div class="cta__content">
+                        <h2 class="cta__title cta__title--small">Let's</h2>
+                        <div class="cta__title-wrapper">
+                            <h2 class="cta__title cta__title--big">BUILD</h2>
+                            <a href="./contact">
+                                <Spinner client:load />
+                            </a>
+                            <h2 class="cta__title cta__title--big">GREAT</h2>
+                        </div>
+                        <h2 class="cta__title cta__title--small">
+                            Things Together
+                        </h2>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
     <script>
         import { gsap } from "gsap";
-
         document.addEventListener("DOMContentLoaded", () => {
+            function cursorFollowerEffect() {
+                if (window.innerWidth <= 1024) return;
+                const follower = document.getElementById("cursorFollower");
+                const wrapper = document.querySelector(".page-wrapper");
+
+                let targetX = 0,
+                    targetY = 0;
+                let currentX = 0,
+                    currentY = 0;
+
+                wrapper.addEventListener("mousemove", (e) => {
+                    const rect = wrapper.getBoundingClientRect();
+                    targetX = e.clientX - rect.left;
+                    targetY = e.clientY - rect.top;
+                });
+
+                gsap.ticker.add(() => {
+                    currentX += (targetX - currentX) * 0.04;
+                    currentY += (targetY - currentY) * 0.04;
+
+                    gsap.set(follower, {
+                        x: currentX,
+                        y: currentY,
+                    });
+                });
+            }
+
             function buttonEffect() {
                 function resetMagnet(button, text) {
                     gsap.to(button, {
@@ -117,10 +146,7 @@ import Spinner from "../components/Spinner.vue";
             }
 
             buttonEffect();
-
-            //============ Logo Slider ============
-
-            //============== Text opacity animaton =============//
+            cursorFollowerEffect();
         });
     </script>
 </Layout>
@@ -133,13 +159,11 @@ import Spinner from "../components/Spinner.vue";
         pointer-events: none;
     }
     .works {
-        background-color: var(--color-bg-dark);
-        padding: var(--space-md) 0 var(--space-2xl) 0;
+        padding: calc(var(--space-md) + 100px) 0 var(--space-2xl) 0;
         z-index: 2;
         overflow: hidden;
         pointer-events: all;
         &__container {
-            background-color: var(--color-bg-dark);
             flex-flow: column;
             gap: var(--space-xl);
         }
@@ -158,14 +182,11 @@ import Spinner from "../components/Spinner.vue";
     }
 
     .cta {
-        --round: clamp(3.75rem, -0.116rem + 16.279vw, 12.5rem);
-        background-color: var(--color-bg-dark);
         border-radius: 0 0 var(--round) var(--round);
         overflow: hidden;
         pointer-events: all;
         &__container {
             max-width: 1280px;
-            background-color: var(--color-bg-dark);
         }
         &__content {
             display: flex;
