@@ -7,12 +7,15 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     let toggle = false;
+    let logoText = document.querySelector(".logo-text");
     let y = 100;
     let c = 100;
     let animationFrame;
     let menuToggle = document.querySelector(".header__toggler");
+    let menuWrapper = document.querySelector(".header__menu");
     let ul = document.querySelector(".header__menu-items");
     let timer;
+    menuWrapper.style.pointerEvents = "none";
 
     menuToggle.addEventListener("click", () => {
         toggle = !toggle;
@@ -21,11 +24,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (toggle) {
             timer = setTimeout(() => {
+                menuWrapper.style.pointerEvents = "all";
                 ul.classList.add("active-fadein");
+                logoText.style.color = "var(--color-text-dark)";
             }, 500);
         } else {
             clearTimeout(timer);
+            menuWrapper.style.pointerEvents = "none";
             ul.classList.remove("active-fadein");
+            logoText.style.color = "var(--color-text-white)";
         }
     });
 

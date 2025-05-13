@@ -1,11 +1,11 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitType from "split-type";
+import { SplitText } from "gsap/SplitText";
 import Swiper from "swiper";
 import { Autoplay } from "swiper/modules";
 
 document.addEventListener("DOMContentLoaded", () => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, SplitText);
     function cursorFollowerEffect() {
         if (window.innerWidth <= 1024) return;
         const follower = document.getElementById("cursorFollower");
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    //============ Button animation ============
     function buttonEffect() {
         function resetMagnet(button, text) {
             gsap.to(button, {
@@ -119,19 +120,18 @@ document.addEventListener("DOMContentLoaded", () => {
     //============== Text opacity animaton =============//
     function aboutTextAnimation() {
         document.querySelectorAll(".split-word").forEach((element) => {
-            const text = new SplitType(element, { types: "words" });
+            const split = new SplitText(element, { type: "words" });
             const scrollConfig = {
                 trigger: element,
                 start: "top 80%",
-                end: "top 20%",
+                end: "top 40%",
                 scrub: true,
                 toggleActions: "play play reverse reverse",
             };
 
             gsap.fromTo(
-                element.querySelectorAll("div.word"),
+                split.words,
                 { opacity: 0.2 },
-
                 {
                     opacity: 1,
                     stagger: 0.2,
@@ -141,8 +141,64 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    //============ Skill section animation ============
+    function skillAnimation() {
+        let items = document.querySelectorAll(".skill__item");
+
+        items.forEach((item) => {
+            gsap.fromTo(
+                item,
+                {
+                    y: 50,
+                },
+                {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 80%",
+                        end: "top 40%",
+                        scrub: true,
+                        toggleActions: "play play reverse reverse",
+                    },
+                }
+            );
+        });
+    }
+
+    //============== Line masking animation =============//
+    document.fonts.ready.then(() => {
+        const h3 = document.querySelector(".sta");
+
+        // Initialize SplitText
+        const split = new SplitText(h3, {
+            type: "lines",
+            linesClass: "line",
+        });
+
+        // Set initial state for animation
+        gsap.set(h3, { opacity: 1 });
+
+        // Create animation with ScrollTrigger
+        gsap.from(split.lines, {
+            duration: 1,
+            yPercent: 100,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "expo.out",
+            scrollTrigger: {
+                trigger: h3,
+                start: "top 50%",
+                end: "bottom 90%",
+                toggleActions: "play none reverse none",
+            },
+        });
+    });
+
+    cursorFollowerEffect();
     aboutTextAnimation();
     slider();
     buttonEffect();
-    cursorFollowerEffect();
+    skillAnimation();
 });

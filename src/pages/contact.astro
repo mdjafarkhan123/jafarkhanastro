@@ -85,6 +85,7 @@ import Layout from "../layouts/Layout.astro";
                     const rect = wrapper.getBoundingClientRect();
                     targetX = e.clientX - rect.left;
                     targetY = e.clientY - rect.top;
+                    console.log(targetX, targetY, currentX, currentY);
                 });
 
                 gsap.ticker.add(() => {
@@ -161,10 +162,6 @@ import Layout from "../layouts/Layout.astro";
             }
             cursorFollowerEffect();
             buttonEffect();
-
-            //============ Logo Slider ============
-
-            //============== Text opacity animaton =============//
         });
     </script>
 </Layout>

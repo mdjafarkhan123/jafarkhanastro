@@ -102,7 +102,8 @@
                 font-weight: 800;
             }
             &--big {
-                font-size: clamp(2.5rem, 0.833rem + 6.667vw, 6rem);
+                font-size: clamp(3.5rem, 2.538rem + 3.846vw, 5rem);
+                white-space: nowrap;
             }
         }
 
@@ -136,7 +137,22 @@
                 justify-content: space-between;
                 gap: 1em;
             }
-
+            &__text {
+                &--small {
+                    font-size: clamp(
+                        2.5rem,
+                        -6.286rem + 13.714vw,
+                        4rem
+                    ) !important;
+                }
+                &--big {
+                    font-size: clamp(
+                        3.75rem,
+                        -9.341rem + 20.455vw,
+                        6rem
+                    ) !important;
+                }
+            }
             #footer-socials {
                 max-width: fit-content;
                 justify-content: center;

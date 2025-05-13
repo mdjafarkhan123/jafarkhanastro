@@ -39,8 +39,8 @@ const works2 = projects.slice(2, 4);
                     <div class="hero__data">
                         <h1 class="hero__title">Jafar Khan</h1>
                         <p class="hero__subtitle subtitle">
-                            I am a freelance front-end developer from Dhaka,
-                            Bangladesh
+                            Freelance web designer & front-end developer from
+                            Dhaka, Bangladesh
                         </p>
                     </div>
                 </div>
@@ -147,7 +147,7 @@ const works2 = projects.slice(2, 4);
                                         of experience.
                                     </div>
                                 </div>
-                                <p class="description">
+                                <p class="description sta">
                                     Since 2020, I've brought more than 200
                                     projects to life, creating modern,
                                     interactive, and high-performance websites
@@ -178,7 +178,7 @@ const works2 = projects.slice(2, 4);
                                 <h2>Skills</h2>
                             </div>
                             <div class="about__skills__content">
-                                <ul class="skill__block">
+                                <ul class="skill__block sta">
                                     <li class="skill__item">HTML</li>
                                     <li class="skill__item">CSS</li>
                                     <li class="skill__item">SCSS</li>
@@ -229,7 +229,8 @@ const works2 = projects.slice(2, 4);
     .intro {
         position: fixed;
         z-index: 9999;
-        background-color: var(--color-bg-dark);
+        background-color: var(--color-bg-white);
+        color: var(--color-text-dark);
         width: 100%;
         height: 100vh;
         top: 0;
@@ -290,6 +291,40 @@ const works2 = projects.slice(2, 4);
             padding-bottom: var(--space-xl);
         }
         &__image {
+            -webkit-mask: -webkit-gradient(
+                linear,
+                left top,
+                right top,
+                from(transparent),
+                color-stop(50%, white),
+                color-stop(0%, white),
+                to(transparent)
+            );
+            -webkit-mask: linear-gradient(
+                90deg,
+                transparent,
+                white 50%,
+                white 0%,
+                transparent
+            );
+            mask: -webkit-gradient(
+                linear,
+                left top,
+                right top,
+                from(transparent),
+                color-stop(50%, white),
+                color-stop(0%, white),
+                to(transparent)
+            );
+            mask: linear-gradient(
+                90deg,
+                transparent,
+                white 50%,
+                white 0%,
+                transparent
+            );
+            z-index: -1;
+
             img {
                 max-width: 95%;
                 height: auto;
@@ -299,6 +334,38 @@ const works2 = projects.slice(2, 4);
                 margin-inline: auto;
                 user-select: none;
                 pointer-events: none;
+                -webkit-mask: -webkit-gradient(
+                    linear,
+                    left bottom,
+                    left top,
+                    from(transparent),
+                    color-stop(40%, white),
+                    color-stop(80%, white),
+                    to(#fbfbfb)
+                );
+                -webkit-mask: linear-gradient(
+                    0deg,
+                    transparent,
+                    white 40%,
+                    white 80%,
+                    #fbfbfb
+                );
+                mask: -webkit-gradient(
+                    linear,
+                    left bottom,
+                    left top,
+                    from(transparent),
+                    color-stop(40%, white),
+                    color-stop(80%, white),
+                    to(#fbfbfb)
+                );
+                mask: linear-gradient(
+                    0deg,
+                    transparent,
+                    white 40%,
+                    white 80%,
+                    #fbfbfb
+                );
             }
         }
 
@@ -414,6 +481,7 @@ const works2 = projects.slice(2, 4);
             }
 
             .skill__item {
+                opacity: 0;
                 color: var(--color-text-dark);
                 padding: 0.7em;
                 border-bottom: 2px solid black;
