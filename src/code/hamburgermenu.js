@@ -1,7 +1,7 @@
+import { gsap } from "gsap";
 const largeScreen = window.matchMedia("(min-width: 1024px)");
 window.addEventListener("DOMContentLoaded", () => {
     let path = document.querySelector(".header__menu .path");
-
     function lerp(start, end, t) {
         return (start * (1 - t) + end * t).toFixed(3);
     }
@@ -13,26 +13,38 @@ window.addEventListener("DOMContentLoaded", () => {
     let animationFrame;
     let menuToggle = document.querySelector(".header__toggler");
     let menuWrapper = document.querySelector(".header__menu");
-    let ul = document.querySelector(".header__menu-items");
-    let timer;
+    let ul = document.querySelector(".header__menu-list");
+    let menuItem = ul.querySelectorAll(".header__menu-item");
+
     menuWrapper.style.pointerEvents = "none";
 
     menuToggle.addEventListener("click", () => {
         toggle = !toggle;
         cancelAnimationFrame(animationFrame);
         animate();
+        let tl = gsap.timeline();
 
         if (toggle) {
-            timer = setTimeout(() => {
-                menuWrapper.style.pointerEvents = "all";
-                ul.classList.add("active-fadein");
-                logoText.style.color = "var(--color-text-dark)";
-            }, 500);
+            tl.set(ul, { display: "block" })
+                .set(menuWrapper, { pointerEvents: "all" })
+                .set(menuItem, { autoAlpha: 0, y: 50 })
+                .to(logoText, {
+                    color: "var(--color-text-dark)",
+                    duration: 0.5,
+                })
+                .to(menuItem, {
+                    autoAlpha: 1,
+                    y: 0,
+                    stagger: 0.1,
+                    duration: 0.5,
+                });
         } else {
-            clearTimeout(timer);
-            menuWrapper.style.pointerEvents = "none";
-            ul.classList.remove("active-fadein");
-            logoText.style.color = "var(--color-text-white)";
+            gsap.set(menuWrapper, {
+                pointerEvents: "none",
+            });
+            gsap.set(ul, { display: "none" });
+            gsap.set(logoText, { color: "var(--color-text-white)" });
+            gsap.set(menuItem, { autoAlpha: 0, y: 50 });
         }
     });
 
@@ -51,7 +63,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         path.setAttribute(
             "d",
-            `M 0 ${y} L 0 100 100 100 100 ${y} C ${50} ${c}, ${50} ${c}, 0 ${y}`
+            `M 0 ${y} L 0 100 100 100 100 ${y} C 50 ${c}, 50 ${c}, 0 ${y}`
         );
         if ((toggle && y < 1 && c < 1) || (!toggle && y > 99 && c > 99)) {
             cancelAnimationFrame(animationFrame);
