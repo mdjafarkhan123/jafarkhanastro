@@ -15,6 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let menuWrapper = document.querySelector(".header__menu");
     let ul = document.querySelector(".header__menu-list");
     let menuItem = ul.querySelectorAll(".header__menu-item");
+    let cta = document.querySelector(".header__action");
 
     menuWrapper.style.pointerEvents = "none";
 
@@ -28,16 +29,25 @@ window.addEventListener("DOMContentLoaded", () => {
             tl.set(ul, { display: "block" })
                 .set(menuWrapper, { pointerEvents: "all" })
                 .set(menuItem, { autoAlpha: 0, y: 50 })
-                .to(logoText, {
-                    color: "var(--color-text-dark)",
-                    duration: 0.5,
-                })
-                .to(menuItem, {
-                    autoAlpha: 1,
-                    y: 0,
-                    stagger: 0.1,
-                    duration: 0.5,
-                });
+                .set(cta, { display: "none" }, 0.5)
+                .to(
+                    logoText,
+                    {
+                        color: "var(--color-text-dark)",
+                        duration: 0.5,
+                    },
+                    "<"
+                )
+                .to(
+                    menuItem,
+                    {
+                        autoAlpha: 1,
+                        y: 0,
+                        stagger: 0.1,
+                        duration: 0.5,
+                    },
+                    "<"
+                );
         } else {
             gsap.set(menuWrapper, {
                 pointerEvents: "none",
@@ -45,6 +55,7 @@ window.addEventListener("DOMContentLoaded", () => {
             gsap.set(ul, { display: "none" });
             gsap.set(logoText, { color: "var(--color-text-white)" });
             gsap.set(menuItem, { autoAlpha: 0, y: 50 });
+            gsap.set(cta, { display: "block" });
         }
     });
 
