@@ -29,7 +29,15 @@ window.addEventListener("DOMContentLoaded", () => {
             tl.set(ul, { display: "block" })
                 .set(menuWrapper, { pointerEvents: "all" })
                 .set(menuItem, { autoAlpha: 0, y: 50 })
-                .set(cta, { display: "none" }, 0.5)
+                .set(
+                    cta,
+                    {
+                        onComplete: () => {
+                            cta.classList.add("hidden");
+                        },
+                    },
+                    0.5
+                )
                 .to(
                     logoText,
                     {
@@ -55,7 +63,11 @@ window.addEventListener("DOMContentLoaded", () => {
             gsap.set(ul, { display: "none" });
             gsap.set(logoText, { color: "var(--color-text-white)" });
             gsap.set(menuItem, { autoAlpha: 0, y: 50 });
-            gsap.set(cta, { display: "block" });
+            gsap.set(cta, {
+                onComplete: () => {
+                    cta.classList.remove("hidden");
+                },
+            });
         }
     });
 
