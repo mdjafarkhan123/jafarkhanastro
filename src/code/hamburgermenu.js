@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     cta,
                     {
                         onComplete: () => {
-                            cta.classList.add("hidden");
+                            cta.classList.toggle("hidden");
                         },
                     },
                     0.5
@@ -65,7 +65,7 @@ window.addEventListener("DOMContentLoaded", () => {
             gsap.set(menuItem, { autoAlpha: 0, y: 50 });
             gsap.set(cta, {
                 onComplete: () => {
-                    cta.classList.remove("hidden");
+                    cta.classList.toggle("hidden");
                 },
             });
         }
