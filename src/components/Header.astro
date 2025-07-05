@@ -3,19 +3,42 @@
         <div class="header__nav">
             <div class="header__logo">
                 <a href="/">
-                    <svg
-                        id="Layer_1"
-                        data-name="Layer 1"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 88.47 59.44"
-                        ><path d="M68.74,0l5.41,5.59L20.09,59.44,14.54,54Z"
-                        ></path><path
-                            d="M77.88,30l-7.74-6L76.5,18l12,11.89L71.24,47.2l-6.13-5.62Z"
-                        ></path><path
-                            d="M18,36.57l-6,6L0,30.19,17.31,13.11l5.87,5.71L11.64,30Z"
-                        ></path></svg
-                    >
-                    <span class="logo-text"> Code by Jafar </span>
+                    <div class="logo">
+                        <div class="logo__wrapper">
+                            <div class="logo__content">
+                                <svg
+                                    class="logo__icon"
+                                    id="Layer_1"
+                                    data-name="Layer 1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 88.47 59.44"
+                                    ><path
+                                        d="M68.74,0l5.41,5.59L20.09,59.44,14.54,54Z"
+                                    ></path><path
+                                        d="M77.88,30l-7.74-6L76.5,18l12,11.89L71.24,47.2l-6.13-5.62Z"
+                                    ></path><path
+                                        d="M18,36.57l-6,6L0,30.19,17.31,13.11l5.87,5.71L11.64,30Z"
+                                    ></path></svg
+                                >
+                                <span class="logo__text"> Code by Jafar </span>
+                            </div>
+                            <svg
+                                class="logo__border"
+                                viewBox="0 0 235 56"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <rect
+                                    x="1"
+                                    y="1"
+                                    width="233"
+                                    height="54"
+                                    rx="27"
+                                    stroke="white"
+                                    stroke-width="2"></rect>
+                            </svg>
+                        </div>
+                    </div>
                 </a>
             </div>
             <div class="header__action">
@@ -29,15 +52,17 @@
                     <span class="btn__bg"></span>
                 </a>
             </div>
-            <div class="header__toggler">
+            <div
+                class="header__toggler btn magnetic-button"
+                data-strength="1.5"
+                data-strength-text=".7"
+            >
                 <input type="checkbox" />
-                <svg viewBox="0 0 32 32">
-                    <path
-                        class="line line-top-bottom"
-                        d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
-                    ></path>
-                    <path class="line" d="M7 16 27 16"></path>
-                </svg>
+                <div class="text">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                </div>
+                <span class="btn__bg"></span>
             </div>
             <div class="header__menu header__menu-wrapper">
                 <svg
@@ -80,10 +105,12 @@
 <style lang="scss">
     @use "../styles/utils" as *;
     .header {
+        opacity: 1;
         position: relative;
         z-index: 3;
         min-height: 80px;
         margin-bottom: -100px;
+        pointer-events: none;
         &__container {
             max-width: 1920px;
             display: flex;
@@ -104,21 +131,33 @@
             flex-grow: 1;
             z-index: inherit;
             a {
-                display: flex;
-                width: fit-content;
-                font-size: clamp(0.875rem, 0.667rem + 0.833vw, 1rem);
-                font-weight: 600;
-                gap: 10px;
-                color: var(--color-text-white);
-                svg {
-                    width: clamp(1.5rem, 0.667rem + 3.333vw, 2rem);
-                    fill: var(--color-primary);
+                display: inline-block;
+                pointer-events: all;
+                .logo {
+                    opacity: 1;
+                }
+                .logo__content {
+                    color: var(--color-heading-white);
+                }
+
+                .logo__border {
+                    stroke-dasharray: 320%;
+                    stroke-dashoffset: 0;
+                    transition: 1s ease all;
+                }
+
+                &:hover .logo__border {
+                    stroke-dasharray: 320%;
+                    stroke-dashoffset: 320%;
+                    transition: 1s ease all;
                 }
             }
         }
 
         &__action {
+            opacity: 1;
             display: none;
+            pointer-events: all;
             .btn {
                 font-size: clamp(0.875rem, 0.709rem + 0.698vw, 1.25rem);
                 color: var(--color-text-white);
@@ -127,51 +166,61 @@
             }
         }
 
-        &__toggler {
+        &__toggler.btn {
             --size: clamp(3.125rem, 2.645rem + 1.829vw, 4.063rem);
+            opacity: 1;
             position: relative;
             display: flex;
+            max-width: var(--size);
             width: var(--size);
             height: var(--size);
             flex-flow: column;
             justify-content: center;
             align-items: center;
             background-color: var(--color-primary);
-            border-radius: 100px;
+            border-radius: 100vmax;
             gap: 5px;
             z-index: inherit;
             overflow: hidden;
+            padding: 0;
+            pointer-events: none;
+            .btn__bg {
+                background-color: var(--color-bg-dark);
+            }
             input {
                 width: var(--size);
                 height: var(--size);
                 appearance: none;
                 position: absolute;
                 cursor: pointer;
+                pointer-events: all;
             }
-            input:checked + svg {
-                transform: rotate(-45deg);
-            }
-            input:checked + svg .line-top-bottom {
-                stroke-dasharray: 20 300;
-                stroke-dashoffset: -32.42;
-            }
-            svg {
+
+            .text {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
                 pointer-events: none;
-                height: clamp(2rem, 0.488vw + 1.795rem, 2.4rem);
-                transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+
                 .line {
-                    fill: none;
-                    stroke: white;
-                    stroke-linecap: round;
-                    stroke-linejoin: round;
-                    stroke-width: 2;
-                    transition:
-                        stroke-dasharray 100ms cubic-bezier(0.4, 0, 0.2, 1),
-                        stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+                    display: block;
+                    max-width: 28px;
+                    width: 100%;
+                    height: 2px;
+                    background-color: rgba(255, 255, 255, 0.748);
+                    transform-origin: center;
+                    transition: all 0.4s ease-in-out;
                 }
 
-                .line-top-bottom {
-                    stroke-dasharray: 12 63;
+                .line-1 {
+                    transform: translateY(-3px);
+                }
+                .line-2 {
+                    transform: translateY(3px);
                 }
             }
         }

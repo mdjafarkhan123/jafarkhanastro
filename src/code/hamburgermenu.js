@@ -7,11 +7,14 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     let toggle = false;
-    let logoText = document.querySelector(".logo-text");
     let y = 100;
     let c = 100;
     let animationFrame;
+    let body = document.body;
+    let logoText = document.querySelector(".logo-text");
     let menuToggle = document.querySelector(".header__toggler");
+    let menuIconOne = menuToggle.querySelector(".line-1");
+    let menuIconTwo = menuToggle.querySelector(".line-2");
     let menuWrapper = document.querySelector(".header__menu");
     let ul = document.querySelector(".header__menu-list");
     let menuItem = ul.querySelectorAll(".header__menu-item");
@@ -26,7 +29,22 @@ window.addEventListener("DOMContentLoaded", () => {
         let tl = gsap.timeline();
 
         if (toggle) {
-            tl.set(ul, { display: "block" })
+            tl.set(menuIconOne, {
+                rotate: 45,
+                y: 0,
+                transformOrigin: "50%, 50%",
+            })
+                .set(body, {
+                    onComplete: () => {
+                        body.classList.toggle("no-scroll");
+                    },
+                })
+                .set(menuIconTwo, {
+                    rotate: -45,
+                    y: 0,
+                    transformOrigin: "50%, 50%",
+                })
+                .set(ul, { display: "block" })
                 .set(menuWrapper, { pointerEvents: "all" })
                 .set(menuItem, { autoAlpha: 0, y: 50 })
                 .set(
@@ -57,6 +75,16 @@ window.addEventListener("DOMContentLoaded", () => {
                     "<"
                 );
         } else {
+            gsap.set(menuIconOne, {
+                rotate: 0,
+                y: -3,
+                transformOrigin: "50%, 50%",
+            });
+            gsap.set(menuIconTwo, {
+                rotate: 0,
+                y: 3,
+                transformOrigin: "50%, 50%",
+            });
             gsap.set(menuWrapper, {
                 pointerEvents: "none",
             });
@@ -65,6 +93,7 @@ window.addEventListener("DOMContentLoaded", () => {
             gsap.set(menuItem, { autoAlpha: 0, y: 50 });
             gsap.set(cta, {
                 onComplete: () => {
+                    body.classList.toggle("no-scroll");
                     cta.classList.toggle("hidden");
                 },
             });
